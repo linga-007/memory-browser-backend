@@ -1,11 +1,12 @@
 # Memory Browser Backend
 
-FastAPI backend for saving page content, generating embeddings, and searching stored memory with ChromaDB.
+FastAPI backend for saving page content, generating embeddings, and searching stored memory with Pinecone.
 
 ## Requirements
 
 - Python 3.10 or newer
 - Internet access the first time the embedding model is downloaded
+- A Pinecone API key and an existing Pinecone index with vector dimension 384
 
 ## Setup
 
@@ -46,6 +47,8 @@ The server runs at `http://127.0.0.1:8000` by default.
 ## Notes
 
 - The embedding model used is `all-MiniLM-L6-v2` from `sentence-transformers`.
+- Set `PINECONE_API_KEY` and `PINECONE_INDEX_NAME` before starting the backend.
+- The Pinecone index should use cosine similarity and a dimension of 384.
 - This project should not commit the local `venv/` folder or Python cache files.
 
 ## Deploy on Vercel
@@ -53,7 +56,7 @@ The server runs at `http://127.0.0.1:8000` by default.
 1. Commit and push this repository to Git (GitHub, GitLab, etc.).
 2. In Vercel, create a new project and import the repository.
 3. Vercel will use the `vercel.json` builder (`@vercel/python`) to deploy the ASGI `app` exported from `api/index.py`.
-4. Ensure any required environment variables (for embeddings or DB connections) are added in the Vercel project settings.
+4. Ensure `PINECONE_API_KEY` and `PINECONE_INDEX_NAME` are added in the Vercel project settings.
 5. After deployment, your API will be available at the Vercel-assigned URL.
 
 Notes:
