@@ -81,3 +81,7 @@ async def get_history():
     print(results)
 
     return results
+
+@app.get("/health")
+async def health_check():
+    return {"status": "ok"}
